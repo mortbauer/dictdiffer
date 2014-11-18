@@ -90,12 +90,12 @@ class DiffPatcherTests(TestWithScenarios):
         first = {'a': 'b'}
         second = {'a': 'c'}
         assert second == self.differ.patch(
-            [('change', 'a', ('b', 'c'))], first)
+            [('change', 'a', ('generic','b', 'c'))], first)
 
         first = {'a': {'b': {'c': 'd'}}}
         second = {'a': {'b': {'c': 'e'}}}
         assert second == self.differ.patch(
-            [('change', 'a.b.c', ('d', 'e'))], first)
+            [('change', 'a.b.c', ('generic','d', 'e'))], first)
 
     def test_remove(self):
         """ Test patch for a removed key """

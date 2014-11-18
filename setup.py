@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='dictdiffer',
       version='0.0.3',
@@ -7,5 +7,5 @@ setup(name='dictdiffer',
       author='Fatih Erikli',
       author_email='fatiherikli@gmail.com',
       url='https://github.com/fatiherikli/dictdiffer',
-      py_modules=['dictdiffer'],
+      packages=['dictdiffer'],
 )

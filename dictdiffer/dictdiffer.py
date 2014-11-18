@@ -40,7 +40,7 @@ class DictDiffer(object):
         else:
             destination[keys[0]] = value
 
-    def _lookup_nodes(self,source,lookup,parent=None):
+    def dot_lookup(self,source,lookup,parent=None):
         """
         A helper function that allows you to reach dictionary
         items with dot lookup (e.g. document.properties.settings)
@@ -118,7 +118,7 @@ class DictDiffer(object):
 
     def _patch_add(self,destination,node,changes):
         for key, value in changes:
-            self._lookup_nodes(destination,node)[key] = value
+            self.dot_lookup(destination,node)[key] = value
 
     def _patch_change(self,destination,node,changes):
         getattr(self,'_patch_change_%s'%changes[0],self._patch_change_generic)(destination,node,changes[1:])
@@ -128,15 +128,15 @@ class DictDiffer(object):
 
     def _patch_remove(self,destination,node,changes):
         for key,value in changes:
-            del self._lookup_nodes(destination,node)[key]
+            del self.dot_lookup(destination,node)[key]
 
     def _patch_pull(self,destination,node,changes):
-        dest = self._lookup_nodes(destination,node)
+        dest = self.dot_lookup(destination,node)
         for value in changes:
             dest.remove(value)
 
     def _patch_push(self,destination,node,changes):
-        dest = self._lookup_nodes(destination,node)
+        dest = self.dot_lookup(destination,node)
         for value in changes:
             dest.append(value)
 
