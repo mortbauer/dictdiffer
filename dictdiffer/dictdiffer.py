@@ -28,7 +28,7 @@ class DictDiffer(object):
 
     def _join_nodes(self,node):
         """ joins keys of subdictionaries """
-        return self.SEP.join(node)
+        return self.SEP.join([str(x) for x in node])
 
     def _set_nodes(self,destination,lookup,value):
         keys = lookup.split(self.SEP)
